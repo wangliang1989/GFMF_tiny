@@ -28,24 +28,51 @@
 
 1. 下载地震波形文件和格林函数库并解压
 
-2. 建立工作目录
+请联系 wangliang.seis@gmail.com 索取（文件太大）。
+
+2. 生成格林函数
+我提供的压缩包文件，已经包含了格林函数，你可以直接使用，也可以用下面的步骤自己计算
+（以 FK 已经正确安装为前提）。我建议初学者先直接用我给的格林函数文件。
+
+**如果你选择自己生成格林函数，千万不要忘记执行 cutglib.pl**。
+目前在 ARM Mac 上使用 cutglib.pl，
+**可能**会产生大量 SAC 的警告信息，原因和影响程度未知。
+````
+cd glib
+cp $GFMF/script/run_parallel.pl . # run_parallel.pl 是并行计算格林函数的脚本
+cp $GFMF/script/config.pm .       # config.pm 是 run_parallel.pl 依赖的一些子函数
+cp $GFMF/script/cutglib.pl .      # 格林函数的处理程序
+perl run_parallel.pl cvms5-1.fk   # 计算格林函数
+perl cutglib.pl                   # 对格林函数滤波，计算归一化互相关的部分归一化参数
+````
+
+3. 建立工作目录
+**在包含了脚本 run.pl 的路径下：**
 ````
 mkdir junk # junk 路径下所有文件在搜索前会被删除
 ````
 
-3. 执行搜索
+4. 执行搜索
 ````
 perl run.pl junk # 运行时间很可能超过 1 小时
 ````
 `20180815/result_cali.txt` 应该和 `wangliang_result_cali.txt` 的差异微小，
 但不必追求完全一致。
 
-4. 生成地震目录
+5. 生成地震目录
 ````
 perl cat.pl
 ````
 `cali_11_10.txt` 应该和 `wangliang_cali_11_10.txt` 的差异微小，
 但不必追求完全一致。
+
+6. 画图
+如果你正确安装了 GMT6，可以画图：
+````
+perl draw.pl
+````
+如果一切顺利，你应该看到你的结果（蓝色，Your result）
+和我的结果（红色，Wangliang result）差别很小。
 
 # 文章下载与引用信息
 
