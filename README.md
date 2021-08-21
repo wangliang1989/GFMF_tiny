@@ -42,7 +42,7 @@ perl run.pl junk # 运行时间很可能超过 1 小时
 
 4. 生成地震目录
 ````
-perl run.pl junk # 运行时间很可能超过 1 小时
+perl cat.pl
 ````
 `cali_11_10.txt` 应该和 `wangliang_cali_11_10.txt` 的差异微小，
 但不必追求完全一致。
