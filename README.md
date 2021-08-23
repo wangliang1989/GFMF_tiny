@@ -26,9 +26,8 @@
 如果你正确安装了 [GFMF](https://github.com/wangliang1989/gfmf) 和 sac，
 那么可以执行以下步骤：
 
-1. 下载地震波形文件和格林函数库并解压
-
-请联系 wangliang.seis@gmail.com 索取（文件太大）。
+1. 下载[地震波形文件](https://www.jianguoyun.com/p/DfcbAv0Q5s_iCRiVyIkE)和
+[格林函数库](https://www.jianguoyun.com/p/DYluM3cQ5s_iCRiLyIkE)并解压
 
 2. 生成格林函数
 
