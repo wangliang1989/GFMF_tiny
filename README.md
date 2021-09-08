@@ -1,6 +1,7 @@
 # GFMF_tiny
 
 此处是使用 GFMF 的一个最小示例，目的是验证 GFMF 本身的安装和给初学者最基本的使用体验。
+使用本示例的最低前提是正确安装了[GFMF](https://github.com/wangliang1989/gfmf) 和 sac。
 
 本示例按照 GPL v3 协议发布，即你可以使用、修改和再发布。但修改后也需要开源（包括增量部分）。
 详情请看[GPL v3 协议英文版](LICENSE)
@@ -23,17 +24,12 @@
 
 # 使用方法
 
-如果你正确安装了 [GFMF](https://github.com/wangliang1989/gfmf) 和 sac，
-那么可以执行以下步骤：
-
 1. 下载[地震波形文件](https://www.jianguoyun.com/p/DfcbAv0Q5s_iCRiVyIkE)和
 [格林函数库](https://www.jianguoyun.com/p/DYluM3cQ5s_iCRiLyIkE)并解压
 
 2. 生成格林函数
-
-我提供的压缩包文件，已经包含了格林函数，你可以直接使用，也可以用下面的步骤自己计算
-（以 FK 已经正确安装为前提）。我建议初学者先直接用我给的格林函数文件。
-
+我在上一步中提供的格林函数库压缩包已经包含了格林函数文件。你可以直接使用，
+也可以用下面的步骤自己计算（以 FK 已经正确安装为前提）。我建议初学者先直接用我给的格林函数文件。
 **如果你选择自己生成格林函数，千万不要忘记执行 cutglib.pl**。
 目前在 ARM Mac 上使用 cutglib.pl，
 **可能**会产生大量 SAC 的警告信息，原因和影响程度未知。
@@ -47,18 +43,20 @@ perl cutglib.pl                   # 对格林函数滤波，计算归一化互�
 ````
 
 3. 建立工作目录
-
 **在包含了脚本 run.pl 的路径下：**
 ````
 mkdir junk # junk 路径下所有文件在搜索前会被删除
 ````
 
 4. 执行搜索
+这一步会非常耗时，而且你的计算机会变得很卡。在运行前，建议关闭其它应用。
+我的电脑（价格 6000 多）需要接近 1 小时来完成搜索。
+不过，我弟弟说学校配的 3 万块的工作站算了一晚上也没算完。
+````
+perl run.pl junk
+````
 
-````
-perl run.pl junk # 运行时间很可能超过 1 小时
-````
-`20180815/result_cali.txt` 应该和 `wangliang_result_cali.txt` 的差异微小，
+计算完毕后，`20180815/result_cali.txt` 应该和 `wangliang_result_cali.txt` 的差异微小，
 但不必追求完全一致。
 
 5. 生成地震目录
@@ -66,8 +64,7 @@ perl run.pl junk # 运行时间很可能超过 1 小时
 ````
 perl cat.pl
 ````
-`cali_11_10.txt` 应该和 `wangliang_cali_11_10.txt` 的差异微小，
-但不必追求完全一致。
+`cali_11_10.txt` 应该和 `wangliang_cali_11_10.txt` 的差异微小，但不必追求完全一致。
 
 6. 画图
 
